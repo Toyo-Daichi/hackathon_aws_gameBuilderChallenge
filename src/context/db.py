@@ -1,6 +1,6 @@
 import os
 import psycopg2
-from psycopg2.extensions import connection, cursor
+from psycopg2.extensions import connection
 #
 from ..util.logger import Logger
 logging = Logger(__name__, "INFO")
@@ -23,9 +23,9 @@ class DbEntity:
 
 class Db:
     _instance = None
-    #
-    db_entity: DbEntity 
     _initilized: bool
+    db_entity: DbEntity 
+    pool: connection
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
@@ -47,7 +47,7 @@ class Db:
             else self.db_entity.reader_host
         
         try:
-            conn = psycopg2.connect(
+            self.pool = psycopg2.connect(
                 host = host,
                 port = self.db_entity.port,
                 dbname = self.db_entity.db_name,
@@ -55,7 +55,6 @@ class Db:
                 password = self.db_entity.password,
             )
             logging.info(f"database connection successful: {host}")
-            return conn
         
         except Exception as e:
             logging.critical(f"Miss connecting to the database: {e}")
