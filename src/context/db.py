@@ -40,8 +40,9 @@ class Db:
     def _initilize(self):
         self.db_entity = DbEntity()
         self._initilized = True
+        self._connect()
 
-    def connect(self, use_writer=False):
+    def _connect(self, use_writer=False):
         host = self.db_entity.writer_host \
             if use_writer \
             else self.db_entity.reader_host
@@ -51,7 +52,7 @@ class Db:
                 host = host,
                 port = self.db_entity.port,
                 dbname = self.db_entity.db_name,
-                user = self.db_entity.user_name,
+                user = self.db_entity.db_user,
                 password = self.db_entity.password,
             )
             logging.info(f"database connection successful: {host}")

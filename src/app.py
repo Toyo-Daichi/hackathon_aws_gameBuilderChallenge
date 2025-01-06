@@ -4,16 +4,14 @@ Created on 2024.12.22
 """
 
 import pyxel
-import json
 import os
 #
 from .context.gamestate import GameState
 from .context.db import Db
-from .infrastructure.db.user import UserQuery
 
 GAME_TITLE = os.environ['GAME_TITLE']
-SCREEN_WIDTH = 120
-SCREEN_HEIGHT = 160
+SCREEN_WIDTH = 80
+SCREEN_HEIGHT = 80
 
 class App:
     gamestate: GameState
@@ -23,9 +21,14 @@ class App:
         self.gamestate = GameState()
         self.Db = Db()
 
-    def read(self):
-        test = UserQuery(self.Db.pool)
-        print(test.read_user())
-    
-if __name__ == "main":
-    App()
+        pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT)
+
+    def update(self):
+        pass
+
+    def draw(self):
+        pyxel.cls(0)
+        pyxel.font(0, 0, GAME_TITLE)
+
+if __name__ == "__main__":
+    app = App()
