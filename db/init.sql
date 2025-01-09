@@ -15,6 +15,7 @@ GRANT pg_read_all_data TO appuser;
 GRANT pg_write_all_data TO appuser;
 
 CREATE TYPE public.roletype AS ENUM('Player', 'Enemy'); 
+CREATE TYPE public.gamemode AS ENUM('Normal', 'DoS', 'DDoS'); 
 
 DROP TABLE IF EXISTS characters CASCADE;
 CREATE TABLE characters (
@@ -40,14 +41,16 @@ DROP TABLE IF EXISTS scores CASCADE;
 CREATE TABLE scores (
   id            SERIAL PRIMARY KEY,
   user_id       INT REFERENCES users(id) ON DELETE CASCADE,
+  gamemode      GAMEMODE,
   value         INT NOT NULL,
   create_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Sample data;
 INSERT INTO characters (name, role, x_coord, y_coord, create_at, update_at)
-values ('Mario',  'Player', 16, 32, NOW(), NOW()),
-   ('Basic1',  'Enemy',  0,  0, NOW(), NOW()),
+values ('Mario', 'Player', 80, 32, NOW(), NOW()),
+   ('Luigi', 'Player', 96, 32, NOW(), NOW()),
+   ('Basic1', 'Player',  0,  0, NOW(), NOW()),
    ('Basic2',  'Enemy', 16,  0, NOW(), NOW()),
    ('Cat',     'Enemy', 32,  0, NOW(), NOW()),
    ('Slime',   'Enemy', 48,  0, NOW(), NOW()),

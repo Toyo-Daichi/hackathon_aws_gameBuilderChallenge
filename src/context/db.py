@@ -55,8 +55,11 @@ class Db:
                 user = self.db_entity.db_user,
                 password = self.db_entity.password,
             )
-            logging.info(f"database connection successful: {host}")
+            logging.info(f"database connection successful ({host})")
         
         except Exception as e:
             logging.critical(f"Miss connecting to the database: {e}")
             raise e
+
+    def get_pool(self):
+        return self.pool

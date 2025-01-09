@@ -1,6 +1,6 @@
 from ..context.db import Db
 from ..infrastructure.db.character import CharacterQuery
-from ..model.character import CharacterEntity
+from ..model.db.character import CharacterEntity
 
 class Character:
     database: Db
@@ -18,3 +18,6 @@ class Character:
 
     def find_character_by_name(self, name: str) -> CharacterEntity:
         return self.query.find_character_by_name(name)
+
+    def find_character_by_role(self, role: str) -> list[CharacterEntity]:
+        return self.query.find_character_by_role(role)
