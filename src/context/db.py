@@ -2,7 +2,7 @@ import os
 import psycopg2
 from psycopg2.extensions import connection
 #
-from ..util.logger import Logger
+from util.logger import Logger
 logging = Logger(__name__, "INFO")
 
 class DbEntity:

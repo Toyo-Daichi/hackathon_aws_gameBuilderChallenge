@@ -2,18 +2,17 @@ import pyxel
 import random
 from typing import Optional
 
-from ..context.db import Db
-from ..context.gamestate import GameState
-from ..model.ui.player import Player
-from ..model.ui.enemy import Enemy
-from ..model.ui.bullet import Bullet
-from ..model.ui.blast import Blast
-from ..service.character import Character
-from ..service.score import Score
+from context.db import Db
+from context.gamestate import GameState
+from model.ui.player import Player
+from model.ui.enemy import Enemy
+from model.ui.bullet import Bullet
+from model.ui.blast import Blast
+from service.character import Character
+from service.score import Score
 
-from ..util.state import *
-from ..util.logger import Logger
-from src.context import gamestate
+from util.state import *
+from util.logger import Logger
 logging = Logger(__name__, "INFO")
 
 PLAYER_INITIAL_X = 142

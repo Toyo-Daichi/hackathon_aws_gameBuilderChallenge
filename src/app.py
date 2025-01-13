@@ -5,18 +5,20 @@ Created on 2024.12.22
 
 import pyxel
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from .context.gamestate import GameState
-from .model.ui.background import Background
-from .scene.title import Title
-from .scene.play import Play
-from .scene.result import Result
+from context.gamestate import GameState
+from model.ui.background import Background
+from scene.title import Title
+from scene.play import Play
+from scene.result import Result
 
-from .util.state import *
-from .util.logger import Logger
-logging = Logger(__name__, "DEBUG")
+from util.state import *
+from util.logger import Logger
+logging = Logger(__name__, "INFO")
 
-GAME_TITLE = os.environ['GAME_TITLE']
+GAME_TITLE = 'PACKET SHOOTING GAME'
 SCREEN_WIDTH = 300
 SCREEN_HEIGHT = 250
 BACKGROUND_COLOR = 13

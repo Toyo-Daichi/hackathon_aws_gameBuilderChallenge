@@ -1,4 +1,4 @@
-from ..util.logger import Logger
+from util.logger import Logger
 logging = Logger(__name__, "INFO")
 
 class GameState:

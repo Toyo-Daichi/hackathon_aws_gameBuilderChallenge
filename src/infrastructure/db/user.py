@@ -1,8 +1,8 @@
 import psycopg2
 from psycopg2.extensions import connection, cursor
 #
-from ...context.db import Db
-from ...model.user import UserEntity
+from context.db import Db
+from model.db.user import UserEntity
 
 class UserQuery:
     pool: connection

@@ -1,9 +1,9 @@
 import pyxel
 
-from ..context.db import Db
-from ..context.gamestate import GameState
-from ..service.score import Score
-from ..util.state import *
+from context.db import Db
+from context.gamestate import GameState
+from service.score import Score
+from util.state import *
 
 class Result:
     gamestate: GameState

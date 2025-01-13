@@ -1,9 +1,9 @@
 import pyxel
 import os
 
-from ..context.gamestate import GameState
+from context.gamestate import GameState
 
-GAME_TITLE = os.environ['GAME_TITLE']
+GAME_TITLE = 'PACKET SHOOTING GAME'
 
 class Title:
     gamestate: GameState

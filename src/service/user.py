@@ -1,6 +1,6 @@
-from ..context.db import Db
-from ..infrastructure.db.user import UserQuery
-from ..model.db.user import UserEntity
+from context.db import Db
+from infrastructure.db.user import UserQuery
+from model.db.user import UserEntity
 
 class User:
     database: Db

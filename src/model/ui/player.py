@@ -1,9 +1,9 @@
 import pyxel
 
-from .blast import Blast
-from .bullet import Bullet
+from model.ui.blast import Blast
+from model.ui.bullet import Bullet
 
-from ...util.state import *
+from util.state import *
 
 IMAGE_INDEX = 0
 PLAYER_WIDTH = 16

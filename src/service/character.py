@@ -1,6 +1,6 @@
-from ..context.db import Db
-from ..infrastructure.db.character import CharacterQuery
-from ..model.db.character import CharacterEntity
+from context.db import Db
+from infrastructure.db.character import CharacterQuery
+from model.db.character import CharacterEntity
 
 class Character:
     database: Db

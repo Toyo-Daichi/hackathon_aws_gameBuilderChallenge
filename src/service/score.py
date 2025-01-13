@@ -1,6 +1,6 @@
-from ..context.db import Db
-from ..infrastructure.db.score import ScoreQuery, ScoreRepository
-from ..model.db.score import ScoreEntity
+from context.db import Db
+from infrastructure.db.score import ScoreQuery, ScoreRepository
+from model.db.score import ScoreEntity
 
 class Score:
     database: Db

@@ -2,8 +2,8 @@ import datetime
 import psycopg2
 from psycopg2.extensions import connection, cursor
 #
-from ...context.db import Db
-from ...model.db.score import ScoreEntity
+from context.db import Db
+from model.db.score import ScoreEntity
 
 class ScoreQuery:
     pool: connection
