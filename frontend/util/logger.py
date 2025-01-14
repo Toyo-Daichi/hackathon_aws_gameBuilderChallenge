@@ -1,5 +1,3 @@
-#!/usr/bin/env python3.12
-
 import logging
 
 fmt = "[%(levelname)s] %(asctime)s %(name)s: %(message)s"
@@ -11,8 +9,7 @@ class Logger:
         self,
         name: str,
         level: str
-    ) -> None:
-
+    ):
         self.logger = logging.getLogger(name)
         self.logger.setLevel(level)
         self.logger.propagate = False
@@ -36,4 +33,3 @@ class Logger:
 
     def critical(self, message: str):
         self.logger.critical(message)
-

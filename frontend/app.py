@@ -9,7 +9,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from context.gamestate import GameState
-from model.ui.background import Background
+from model.background import Background
 from scene.title import Title
 from scene.play import Play
 from scene.result import Result
