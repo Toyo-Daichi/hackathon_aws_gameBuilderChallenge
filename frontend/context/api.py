@@ -1,5 +1,7 @@
 import requests
-from typing import Generic, TypeVar, Dict, Any, Optional
+import os
+from typing import TypeVar, Dict, Any, Optional
+from urllib.parse import urljoin
 
 from util.logger import Logger
 logging = Logger(__name__, "INFO")
@@ -20,25 +22,19 @@ class API:
             cls._instance = super(API, cls).__new__(cls)
         return cls._instance
 
-    def __init__(self,
-        url: str,
-        timeout: int
-    ):
+    def __init__(self):
         if getattr(self,'_initialized', False):
             return 
-        self._initialize(url, timeout)
+        self._initialize()
 
-    def _initialize(self,
-        url: str,
-        timeout: int
-    ):
+    def _initialize(self):
         self._initialized = True
         self.session = requests.Session()
-        self.timeout = timeout
-        self.url = url
+        self.timeout = int(os.getenv("TIMEOUT", "10"))
+        self.url = os.getenv("API_URL", "http://localhost:5000")
 
     def _build_url(self, path: str) -> str:
-        return f"{self.url}/{path}"
+        return urljoin(self.url, path)
 
     def request(self,
         method: str,
@@ -70,5 +66,3 @@ class API:
     ) -> R:
         res = self.request('POST', endpoint, data)
         return res.json()
-
-

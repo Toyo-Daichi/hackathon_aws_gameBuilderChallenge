@@ -1,11 +1,10 @@
-from context.db import Db
-from infrastructure.db.user import UserQuery
-from model.db.user import UserEntity
+from context.api import API
+from model.api.user import UserEntity
+
+END_POINT = "/users"
 
 class User:
-    database: Db
-    query: UserQuery
+    api: API
 
-    def __init__(self, database: Db) -> None:
-        self.database = database
-        self.query = UserQuery(database.pool)
+    def __init__(self):
+        self.api = API()

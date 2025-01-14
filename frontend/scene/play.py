@@ -2,7 +2,7 @@ import pyxel
 import random
 from typing import Optional
 
-from context.db import Db
+from context.api import API
 from context.gamestate import GameState
 from model.ui.player import Player
 from model.ui.enemy import Enemy
@@ -53,7 +53,7 @@ class GameInfo:
 
 class Play:
     gamestate: GameState
-    database: Db
+    api: API
     score: int
     player: Player
     enemies: list[Enemy]
@@ -64,12 +64,12 @@ class Play:
 
     def __init__(self):
         self.gamestate = GameState()
-        self.database = Db()
+        self.api = API()
         self.score = 0
         self.bullets = []
         self.blasts = []
 
-        character = Character(self.database)
+        character = Character()
         player_names = ['Basic1', 'Mario', 'Luigi']
         player_name = random.choice(player_names)
         logging.info(f"Character of Player is {player_name}")
@@ -109,7 +109,7 @@ class Play:
 
         if pyxel.btnp(pyxel.KEY_Q):
             logging.info("Game Quit")
-            score = Score(self.database)
+            score = Score()
             score.write_score(1, self.gamestate.get_mode(), self.score)
             self.gamestate.set_state('RESULT')
             self.gamestate.set_score(self.score)

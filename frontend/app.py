@@ -8,8 +8,9 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+from context.api import API
 from context.gamestate import GameState
-from model.background import Background
+from model.ui.background import Background
 from scene.title import Title
 from scene.play import Play
 from scene.result import Result
@@ -24,6 +25,7 @@ SCREEN_HEIGHT = 250
 BACKGROUND_COLOR = 13
 
 class App:
+    api: API
     gamestate: GameState
     #
     title: Title
@@ -36,6 +38,7 @@ class App:
         logging.info("Assets loaded mario.pyxres")
         pyxel.load("./assets/pyxres/mario.pyxres")
 
+        self.api = API()
         self.gamestate = GameState()
         self.title = Title()
         self.play = Play()

@@ -1,5 +1,4 @@
 import pyxel
-import os
 
 from context.gamestate import GameState
 

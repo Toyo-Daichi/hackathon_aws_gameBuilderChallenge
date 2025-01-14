@@ -1,28 +1,34 @@
-from context.db import Db
-from infrastructure.db.score import ScoreQuery, ScoreRepository
-from model.db.score import ScoreEntity
+from context.api import API
+from model.api.score import ScoreEntity
+
+END_POINT = "/scores"
 
 class Score:
-    database: Db
-    query: ScoreQuery
-    repository: ScoreRepository
+    api: API
 
-    def __init__(self, database: Db):
-        self.database = database
-        self.query = ScoreQuery(database.pool)
-        self.repository = ScoreRepository(database.pool)
+    def __init__(self):
+        self.api = API()
 
     def find_all_score(self) -> list[ScoreEntity]:
-        return self.query.find_all_score()
+        res = self.api.get(END_POINT)
+        return [ScoreEntity(**data) for data in res]
 
     def find_score_by_id(self, id: int) -> ScoreEntity:
-        return self.query.find_score_by_id(id)
+        res = self.api.get(f"{END_POINT}/id/{id}")
+        return ScoreEntity(**res)
 
-    def find_score_by_user_id(self, user_id: int) -> ScoreEntity:
-        return self.query.find_score_by_user_id(user_id)
+    def find_score_by_user(self, user: str) -> ScoreEntity:
+        res = self.api.get(f"{END_POINT}/user/{user}")
+        return ScoreEntity(**res)
 
     def find_score_by_mode(self, mode: str) -> list[ScoreEntity]:
-        return self.query.find_score_by_mode(mode)
+        res = self.api.get(f"{END_POINT}/mode/{mode}")
+        return [ScoreEntity(**data) for data in res]
 
     def write_score(self, user_id: int, mode: str, score: int):
-        self.repository.write_score(user_id, mode, score)
+        data = {
+            "user_id": user_id,
+            "mode": mode,
+            "score": score,
+        }
+        self.api.post(END_POINT, data)
