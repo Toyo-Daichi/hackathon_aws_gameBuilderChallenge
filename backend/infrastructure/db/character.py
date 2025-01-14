@@ -1,8 +1,8 @@
 import psycopg2
 from psycopg2.extensions import connection, cursor
-#
+
 from context.db import Db
-from model.db.character import CharacterEntity
+from model.character import CharacterEntity
 
 class CharacterQuery:
     pool: connection
