@@ -22,3 +22,12 @@ class UserEntity:
 
     def __str__(self):
         return f"UserEntity(id={self.id}, name={self.name})"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "chararacter_id": self.chararacter_id,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
+        }

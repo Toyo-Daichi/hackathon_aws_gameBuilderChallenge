@@ -6,7 +6,6 @@ class ScoreEntity:
     mode: str
     score: int
     created_at: datetime.date
-    updated_at: datetime.date
 
     def __init__(self,
         id: int,
@@ -23,3 +22,12 @@ class ScoreEntity:
 
     def __str__(self):
         return f"ScoreEntity(id={self.id}, user_id={self.user_id}, score={self.score})"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "mode": self.mode,
+            "score": self.score,
+            "created_at": self.created_at,
+        }

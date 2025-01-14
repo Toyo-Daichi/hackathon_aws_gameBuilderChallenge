@@ -1,24 +1,24 @@
 import pyxel
 
-from context.db import Db
+from context.api import API
 from context.gamestate import GameState
 from service.score import Score
 from util.state import *
 
 class Result:
     gamestate: GameState
-    database: Db
+    api: API
 
     def __init__(self):
         self.gamestate = GameState()
-        self.database = Db()
+        self.api = API()
 
     def update(self):
         if pyxel.btnp(pyxel.KEY_RETURN):
             self.gamestate.state = "START"
 
     def draw(self):
-        score = Score(self.database)
+        score = Score()
         ranking = score.find_score_by_mode(self.gamestate.get_mode())
 
         pyxel.text(55, 55, "GAME OVER ...", 1)

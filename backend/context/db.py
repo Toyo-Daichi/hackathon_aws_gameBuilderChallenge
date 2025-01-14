@@ -40,7 +40,7 @@ class Db:
     def _initilize(self):
         self.db_entity = DbEntity()
         self._initilized = True
-        self._connect()
+        self._connect(True)
 
     def _connect(self, use_writer=False):
         host = self.db_entity.writer_host \

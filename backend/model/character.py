@@ -28,3 +28,14 @@ class CharacterEntity:
 
     def __str__(self):
         return f"CharacterEntity(id={self.id}, name={self.name})"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "role": self.role,
+            "x_coord": self.x_coord,
+            "y_coord": self.y_coord,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
+        }

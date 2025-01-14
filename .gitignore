@@ -1,4 +1,5 @@
 # .gitignore
 **/.env
+**/*.pyxapp
 **/__pycache__
 **/.pytest_cache

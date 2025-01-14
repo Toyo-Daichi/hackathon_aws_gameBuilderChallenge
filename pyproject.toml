@@ -10,6 +10,10 @@ python = "^3.9"
 psycopg2 = "^2.9.10"
 pyxel = "^2.2.10"
 python-dotenv = "^1.0.1"
+flask = "^3.1.0"
+pytest = "^8.3.4"
+requests = "^2.32.3"
+flask-cors = "^5.0.0"
 
 
 [build-system]

@@ -1,9 +1,9 @@
 import datetime
 import psycopg2
 from psycopg2.extensions import connection, cursor
-#
+
 from context.db import Db
-from model.db.score import ScoreEntity
+from model.score import ScoreEntity
 
 class ScoreQuery:
     pool: connection
@@ -28,21 +28,6 @@ class ScoreQuery:
 
     def find_score_by_id(self, id: int) -> ScoreEntity:
         self._cursor.execute("SELECT * from scores where id = %s;", (id,))
-        res = self._cursor.fetchone()
-
-        if res is None:
-            raise ValueError(f"Character with id {id} not found")
-
-        return ScoreEntity(
-            id=res[0],
-            user_id=res[1],
-            mode=res[2],
-            score=res[3],
-            created_at=res[4]
-        )
-
-    def find_score_by_user_id(self, user_id: int) -> ScoreEntity:
-        self._cursor.execute("SELECT * from scores where user_id = %s;", (user_id,))
         res = self._cursor.fetchone()
 
         if res is None:
