@@ -4,6 +4,7 @@ Created on 2024.01.13
 """
 
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +17,7 @@ from util.logger import Logger
 logging = Logger(__name__, "INFO")
 
 app = Flask(__name__)
+CORS(app)
 db = Db()
 
 character_query = CharacterQuery(db.pool)
