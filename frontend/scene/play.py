@@ -59,21 +59,25 @@ class Play:
     enemies: list[Enemy]
     bullets: list[Bullet]
     blasts: list[Blast]
+    playing_fetched: bool
     #
     gameinfo: GameInfo
 
     def __init__(self):
         self.gamestate = GameState()
         self.api = API()
+        self.initialize()
+
+    def initialize(self):
         self.score = 0
         self.bullets = []
         self.blasts = []
+        self.playing_fetched = True
 
         character = Character()
         player_names = ['Basic1', 'Mario', 'Luigi']
         player_name = random.choice(player_names)
         logging.info(f"Character of Player is {player_name}")
-
         _player = character.find_character_by_name(random.choice(player_names))
         self.player = Player(
             PLAYER_INITIAL_X,
@@ -108,6 +112,7 @@ class Play:
         cleanup_states(self.blasts)
 
         if pyxel.btnp(pyxel.KEY_Q):
+            self.playing_fetched = False
             logging.info("Game Quit")
             score = Score()
             score.write_score(1, self.gamestate.get_mode(), self.score)
@@ -139,6 +144,8 @@ class Play:
                     self.score += 10
 
     def draw(self):
+        if not self.playing_fetched:
+            self.initialize()
         pyxel.text(0, 0, f"{self.gamestate.get_mode()}", 1)
         pyxel.text(0, 8, f"{self.score}", 1)
         draw_state(self.player)
