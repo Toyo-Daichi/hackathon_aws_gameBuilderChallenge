@@ -6,6 +6,9 @@ from urllib.parse import urljoin
 from util.logger import Logger
 logging = Logger(__name__, "INFO")
 
+API_URL = os.getenv("API_URL", "http://localhost")
+API_PORT = os.getenv("API_PORT", "5000")
+
 T = TypeVar('T')
 R = TypeVar('R')
 
@@ -31,7 +34,7 @@ class API:
         self._initialized = True
         self.session = requests.Session()
         self.timeout = int(os.getenv("TIMEOUT", "10"))
-        self.url = os.getenv("API_URL", "http://localhost:5000")
+        self.url = f"{API_URL}:{API_PORT}"
 
     def _build_url(self, path: str) -> str:
         return urljoin(self.url, path)
